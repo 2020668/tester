@@ -55,7 +55,7 @@ ROOT_URLCONF = 'tester.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        'NAME': os.path.join(BASE_DIR, 'tester'),
+        'NAME': 'tester',
         'USER': 'root',
         'PASSWORD': 'Zuowei/19881128',
         'HOST': '118.24.221.133',
