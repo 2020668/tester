@@ -30,4 +30,3 @@ def delete(request, bid):
 
 
 
-
