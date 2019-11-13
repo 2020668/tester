@@ -19,3 +19,37 @@ class HeroInfo(models.Model):
     hcomment = models.CharField(max_length=200)
     hbook = models.ForeignKey('BookInfo', on_delete=models.DO_NOTHING)
     isDelete = models.BooleanField(default=False)
+
+
+class NewsType(models.Model):
+
+    type_name = models.CharField(max_length=20)
+
+
+class NewsInfo(models.Model):
+
+    title = models.CharField(max_length=128)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    news_type = models.ManyToManyField('NewsType')
+
+
+class EmployeeBasicInfo(models.Model):
+
+    name = models.CharField(max_length=20)
+    gender = models.BooleanField(default=False)
+    age = models.IntegerField()
+
+
+class EmployeeDetailInfo(models.Model):
+
+    addr = models.CharField(max_length=256)
+    employee_basic = models.OneToOneField('EmployeeBasicInfo', on_delete=models.DO_NOTHING)
+
+
+class AreaInfo(models.Model):
+
+    aTitle = models.CharField(max_length=20)
+    aParent = models.ForeignKey('self', null=True, blank=True, on_delete=models.DO_NOTHING)
+
+
