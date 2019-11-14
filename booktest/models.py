@@ -49,7 +49,11 @@ class EmployeeDetailInfo(models.Model):
 
 class AreaInfo(models.Model):
 
-    aTitle = models.CharField(max_length=20)
-    aParent = models.ForeignKey('self', null=True, blank=True, on_delete=models.DO_NOTHING)
-
-
+    areaName = models.CharField(max_length=20)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.DO_NOTHING)
+    shortName = models.CharField(max_length=50)
+    lng = models.CharField(max_length=20)
+    lat = models.CharField(max_length=20)
+    level = models.IntegerField()
+    position = models.CharField(max_length=255)
+    sort = models.IntegerField()
