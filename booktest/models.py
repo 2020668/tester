@@ -3,6 +3,15 @@ from django.db import models
 # Create your models here.
 
 
+class BookInfoManage(models.Manager):
+    """图书模型管理器类"""
+    # 改变查询的结果集
+    def all(self):
+        book = super().all()
+        books = book.filter(isDelete=False)
+        return books
+
+
 class BookInfo(models.Model):
 
     btitle = models.CharField(max_length=20)
@@ -10,6 +19,8 @@ class BookInfo(models.Model):
     bread = models.IntegerField(default=0)
     bcomment = models.IntegerField(default=0)
     isDelete = models.BooleanField(default=False)
+    # book = models.Manager()
+    objects = BookInfoManage()
 
 
 class HeroInfo(models.Model):
