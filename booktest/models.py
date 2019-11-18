@@ -11,6 +11,15 @@ class BookInfoManage(models.Manager):
         books = book.filter(isDelete=False)
         return books
 
+    def create_book(self, btitle, bpub_date):
+        # 创建一个图书对象
+        model_class = self.model
+        book = model_class()
+        book.btitle = btitle
+        book.bpub_date = bpub_date
+        book.save()
+        return book
+
 
 class BookInfo(models.Model):
 
@@ -21,6 +30,9 @@ class BookInfo(models.Model):
     isDelete = models.BooleanField(default=False)
     # book = models.Manager()
     objects = BookInfoManage()
+
+    class Meta:
+        db_table = 'bookinfo'       # 指定模型类对应的表名
 
 
 class HeroInfo(models.Model):
