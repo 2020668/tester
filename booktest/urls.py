@@ -9,5 +9,7 @@ urlpatterns = [
     # url('^showarg(\d+)$', views.show_arg),       # 位置参数
     url('^showarg(?P<num>\d+)$', views.show_arg),       # 关键字参数
     url('^login$', views.login),
-    url('^login_check$', views.login_check)
+    url('^login_check$', views.login_check),
+    url('^test_ajax$', views.ajax_test),
+    url('^ajax_handle$', views.ajax_handle)
 ]

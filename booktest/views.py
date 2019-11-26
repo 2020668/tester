@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, RequestContext
 from datetime import date
 from booktest.models import BookInfo
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 
@@ -56,6 +56,13 @@ def login_check(request):
         return redirect('/login')
 
 
+def ajax_test(request):
+    '''显示ajax页面'''
+    return render(request, 'booktest/test_ajax.html')
+
+
+def ajax_handle(request):
+    return JsonResponse({'res': 'ajax请求发送成功'})
 
 
 
