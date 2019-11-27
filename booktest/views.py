@@ -65,5 +65,6 @@ def ajax_handle(request):
     return JsonResponse({'res': 'ajax请求发送成功'})
 
 
-
+def login_ajax(request):
+    return render(request, 'booktest/login_ajax.html')
 

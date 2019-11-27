@@ -10,6 +10,7 @@ urlpatterns = [
     url('^showarg(?P<num>\d+)$', views.show_arg),       # 关键字参数
     url('^login$', views.login),
     url('^login_check$', views.login_check),
-    url('^test_ajax$', views.ajax_test),
-    url('^ajax_handle$', views.ajax_handle)
+    url('^test_ajax$', views.ajax_test),    # 显示ajax页面
+    url('^ajax_handle$', views.ajax_handle),    # ajax处理
+    url('^login_ajax$', views.login_ajax)       # 显示ajax登录页面
 ]
