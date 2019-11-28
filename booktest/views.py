@@ -68,3 +68,14 @@ def ajax_handle(request):
 def login_ajax(request):
     return render(request, 'booktest/login_ajax.html')
 
+
+def login_ajax_check(request):
+    '''ajax登录校验'''
+    # 获取用户名和密码
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    # 进行校验　返回json
+    if username == 'admin' and password == '123456':
+        return JsonResponse({'status': 1})
+    else:
+        return JsonResponse({'status': 0})
