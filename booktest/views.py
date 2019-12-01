@@ -36,12 +36,18 @@ def show_arg(request, num):
 
 # 显示登录页面
 def login(request):
-    # 获取cookie username
-    if 'username' in request.COOKIES:
-        username = request.COOKIES['username']
+    # 判断用是否登录
+    if request.session.has_key('isLogin'):
+        # 如果用户已登录　则跳转到首页
+        return redirect('/index')
     else:
-        username = ''
-    return render(request, 'booktest/login.html', {'username': username})
+        # 用户未登录
+        # 获取cookie username
+        if 'username' in request.COOKIES:
+            username = request.COOKIES['username']
+        else:
+            username = ''
+        return render(request, 'booktest/login.html', {'username': username})
 
 
 # 登录校验视图
@@ -62,6 +68,8 @@ def login_check(request):
         if remember == 'on':
             # response.set_cookie('username', username, 'password', password, max_age=7*24*3600)
             response.set_cookie('username', username, max_age=7 * 24 * 3600)
+        # 记住用户登录状态　只要session中有isLogin就认为用户已登录
+        request.session['isLogin'] = '1'
         return response
 
     else:
@@ -95,7 +103,6 @@ def login_ajax_check(request):
 
 # 设置cookie  /set_cookie
 def set_cookie(request):
-
     response = HttpResponse('设置cookie')
     # 设置一个cookie信息，字段num, 值为１
     response.set_cookie('num', 1, max_age=14 * 24 * 3600)   # 两周后过期
@@ -106,9 +113,27 @@ def set_cookie(request):
 
 # 获取cookie  /get_cookie
 def get_cookie(request):
-
     num = request.COOKIES['num']
     return HttpResponse(num)
 
+
+# 设置session  /set_session
+def set_session(request):
+    request.session['username'] = 'admin'
+    request.session['pwd'] = '123456'
+    request.session.set_expiry(10)
+    return HttpResponse('设置session')
+
+
+def get_session(request):
+    username = request.session['username']
+    pwd = request.session['pwd']
+    return HttpResponse(username + pwd)
+
+
+def clear_session(request):
+    request.session.clear()
+    request.session.flush()
+    return HttpResponse('清除成功')
 
 

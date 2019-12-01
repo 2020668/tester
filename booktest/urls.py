@@ -15,5 +15,8 @@ urlpatterns = [
     url('^login_ajax$', views.login_ajax),       # 显示ajax登录页面
     url('^login_ajax_check$', views.login_ajax_check),    # ajax登录校验
     url('^set_cookie$', views.set_cookie),    # 设置cookie
-    url('^get_cookie$', views.get_cookie)    # 获取cookie
+    url('^get_cookie$', views.get_cookie),    # 获取cookie
+    url('^set_session$', views.set_session),  # 设置session
+    url('^get_session$', views.get_session),  # 获取session
+    url('^clear_session$', views.clear_session),  # 清除session
 ]
